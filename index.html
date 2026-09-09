@@ -1,1 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto Payment</title>
 
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    background:#f4f6f8;
+    color:#111827;
+}
+
+.container{
+    max-width:520px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    border-radius:22px;
+    padding:28px;
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+}
+
+.logo{
+    width:58px;
+    height:58px;
+    border-radius:16px;
+    background:#111827;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    margin-bottom:18px;
+}
+
+h1{
+    margin:0 0 8px;
+    font-size:28px;
+}
+
+.subtitle{
+    color:#6b7280;
+    margin-bottom:25px;
+}
+
+label{
+    display:block;
+    font-weight:600;
+    margin:16px 0 8px;
+}
+
+input,select{
+    width:100%;
+    padding:14px;
+    border:1px solid #d1d5db;
+    border-radius:12px;
+    font-size:15px;
+    outline:none;
+}
+
+input:focus,select:focus{
+    border-color:#111827;
+}
+
+button{
+    width:100%;
+    border:0;
+    border-radius:12px;
+    padding:15px;
+    margin-top:18px;
+    background:#111827;
+    color:white;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.92;
+}
+
+.address-box{
+    display:none;
+    margin-top:22px;
+    padding:16px;
+    background:#f3f4f6;
+    border-radius:14px;
+}
+
+.address{
+    word-break:break-all;
+    font-family:monospace;
+    font-size:13px;
+    margin:8px 0 12px;
+}
+
+.copy{
+    background:#374151;
+    margin-top:5px;
+}
+
+.warning{
+    margin-top:24px;
+    padding:15px;
+    border-radius:12px;
+    background:#fff7ed;
+    color:#9a3412;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.status{
+    display:none;
+    margin-top:20px;
+    padding:14px;
+    border-radius:12px;
+    background:#ecfdf5;
+    color:#047857;
+    font-weight:600;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <div class="logo">₿</div>
+
+        <h1>Crypto Payment</h1>
+
+        <div class="subtitle">
+            Send cryptocurrency to the public wallet address provided below.
+        </div>
+
+        <label for="network">Network</label>
+        <select id="network">
+            <option>Ethereum</option>
+            <option>BNB Smart Chain</option>
+            <option>Polygon</option>
+            <option>Solana</option>
+            <option>Bitcoin</option>
+        </select>
+
+        <label for="crypto">Cryptocurrency</label>
+        <select id="crypto">
+            <option>USDT</option>
+            <option>USDC</option>
+            <option>ETH</option>
+            <option>BNB</option>
+            <option>SOL</option>
+            <option>BTC</option>
+        </select>
+
+        <label for="amount">Amount</label>
+        <input
+            id="amount"
+            type="number"
+            min="0"
+            step="any"
+            placeholder="Enter amount"
+        >
+
+        <label for="wallet">Your public wallet address</label>
+        <input
+            id="wallet"
+            type="text"
+            placeholder="Paste your public wallet address"
+        >
+
+        <button onclick="generatePayment()">
+            Continue
+        </button>
+
+        <div class="address-box" id="paymentBox">
+            <strong>Payment information</strong>
+
+            <div class="address" id="paymentInfo"></div>
+
+            <button class="copy" onclick="copyAddress()">
+                Copy Information
+            </button>
+        </div>
+
+        <div class="status" id="status">
+            ✓ Payment request created successfully.
+        </div>
+
+        <div class="warning">
+            <strong>Security warning:</strong><br>
+            Never enter your recovery phrase, seed phrase, private key,
+            password, or PIN on this website. A legitimate wallet connection
+            should never require your recovery phrase.
+        </div>
+
+    </div>
+</div>
+
+<script>
+function generatePayment(){
+
+    const network = document.getElementById("network").value;
+    const crypto = document.getElementById("crypto").value;
+    const amount = document.getElementById("amount").value;
+    const wallet = document.getElementById("wallet").value.trim();
+
+    if(!wallet){
+        alert("Please enter your public wallet address.");
+        return;
+    }
+
+    if(!amount || Number(amount) <= 0){
+        alert("Please enter a valid amount.");
+        return;
+    }
+
+    const info =
+        "Network: " + network +
+        "\\nCrypto: " + crypto +
+        "\\nAmount: " + amount +
+        "\\nPublic wallet: " + wallet;
+
+    document.getElementById("paymentInfo").innerText = info;
+    document.getElementById("paymentBox").style.display = "block";
+    document.getElementById("status").style.display = "block";
+}
+
+function copyAddress(){
+
+    const text = document.getElementById("paymentInfo").innerText;
+
+    navigator.clipboard.writeText(text)
+        .then(() => {
+            alert("Payment information copied.");
+        })
+        .catch(() => {
+            alert("Unable to copy automatically.");
+        });
+}
+</script>
+
+</body>
+</html>
