@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Crypto Payment</title>
 
 <style>
@@ -13,80 +12,86 @@
 
 body{
   margin:0;
+  min-height:100vh;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
   background:#07111f;
   color:#fff;
+  padding:24px 14px;
 }
 
 .container{
   width:100%;
-  max-width:520px;
+  max-width:720px;
   margin:auto;
-  padding:22px;
 }
 
 .card{
-  background:#0d1929;
-  border:1px solid #24344a;
-  border-radius:24px;
-  padding:24px;
-  box-shadow:0 15px 45px rgba(0,0,0,.35);
+  background:#0c1a2b;
+  border:1px solid #263c59;
+  border-radius:28px;
+  padding:34px 24px;
+  box-shadow:0 20px 60px rgba(0,0,0,.35);
 }
 
 .logo{
-  width:58px;
-  height:58px;
-  border-radius:18px;
-  background:#17283e;
+  width:80px;
+  height:80px;
+  border-radius:24px;
+  background:#152b45;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:28px;
-  margin-bottom:18px;
+  font-size:43px;
+  margin-bottom:30px;
 }
 
 h1{
-  margin:0;
-  font-size:28px;
+  font-size:42px;
+  margin:0 0 10px;
 }
 
 .subtitle{
   color:#9eacc0;
-  margin:8px 0 25px;
+  font-size:20px;
   line-height:1.5;
+  margin-bottom:35px;
 }
 
 label{
   display:block;
-  margin:17px 0 8px;
-  font-weight:600;
+  font-size:18px;
+  font-weight:700;
+  margin:25px 0 10px;
 }
 
-input,select{
+select,
+input{
   width:100%;
-  padding:15px;
-  border-radius:13px;
-  border:1px solid #33465e;
-  background:#081321;
+  padding:18px;
+  border-radius:18px;
+  border:1px solid #314762;
+  background:#071522;
   color:#fff;
-  font-size:15px;
+  font-size:17px;
   outline:none;
 }
 
-input:focus,select:focus{
-  border-color:#5c8dff;
+select:focus,
+input:focus{
+  border-color:#4b82ff;
 }
 
 button{
   width:100%;
-  padding:15px;
-  margin-top:20px;
+  margin-top:28px;
+  padding:19px;
   border:0;
-  border-radius:13px;
-  background:#2764ff;
+  border-radius:18px;
+  background:#2864ff;
   color:white;
-  font-size:16px;
-  font-weight:700;
+  font-size:18px;
+  font-weight:800;
+  cursor:pointer;
 }
 
 button:active{
@@ -94,56 +99,62 @@ button:active{
 }
 
 .status{
+  margin-top:24px;
+  padding:20px;
+  border-radius:18px;
   display:none;
-  margin-top:22px;
-  padding:18px;
-  border-radius:15px;
   line-height:1.6;
 }
 
-.waiting{
-  background:#18263a;
-  color:#cbd7e8;
-}
-
 .success{
-  background:#07351f;
-  border:1px solid #1c9d5a;
-  color:#b7ffd5;
+  display:block;
+  background:#0d3024;
+  border:1px solid #21a875;
+  color:#b8ffe4;
 }
 
 .error{
-  background:#3a1212;
-  border:1px solid #b84242;
-  color:#ffc3c3;
+  display:block;
+  background:#32151b;
+  border:1px solid #d94c62;
+  color:#ffc4ce;
 }
 
-.details{
-  margin-top:15px;
-  padding:15px;
-  border-radius:12px;
-  background:#081321;
+.loading{
+  display:block;
+  background:#17253a;
+  border:1px solid #385170;
+  color:#dce8f8;
+}
+
+.receipt{
+  margin-top:18px;
+  background:#081522;
+  border:1px solid #30465f;
+  border-radius:18px;
+  padding:20px;
+}
+
+.receipt div{
+  padding:8px 0;
+  border-bottom:1px solid #1c3045;
+  word-break:break-word;
+}
+
+.receipt div:last-child{
+  border-bottom:0;
+}
+
+.small{
+  color:#8798ad;
   font-size:14px;
-}
-
-.hash{
-  word-break:break-all;
-  font-family:monospace;
-  color:#8db1ff;
-}
-
-.warning{
-  margin-top:24px;
-  padding:15px;
-  border-radius:13px;
-  background:#33280d;
-  color:#ffe7a3;
-  font-size:13px;
+  margin-top:25px;
   line-height:1.5;
 }
 
 a{
-  color:#8db1ff;
+  color:#76a2ff;
+  word-break:break-all;
 }
 </style>
 </head>
@@ -152,104 +163,147 @@ a{
 
 <div class="container">
 
-<div class="card">
+  <div class="card">
 
-<div class="logo">₿</div>
+    <div class="logo">₿</div>
 
-<h1>Crypto Payment</h1>
+    <h1>Crypto Payment</h1>
 
-<div class="subtitle">
-Verify a cryptocurrency payment using its blockchain transaction hash.
-</div>
+    <div class="subtitle">
+      Verify a cryptocurrency payment using its blockchain transaction hash.
+    </div>
 
-<label>Network</label>
+    <label for="network">Network / Coin</label>
 
-<select id="network">
-  <option value="ethereum">Ethereum</option>
-</select>
+    <select id="network">
+      <option value="ethereum">Ethereum — ETH</option>
+      <option value="bnb">BNB Smart Chain — BNB</option>
+      <option value="polygon">Polygon — POL</option>
+      <option value="base">Base — ETH</option>
+      <option value="arbitrum">Arbitrum One — ETH</option>
+      <option value="optimism">Optimism — ETH</option>
+    </select>
 
-<label>Receiver wallet address</label>
+    <label for="receiver">Receiver wallet address</label>
 
-<input
-  id="receiver"
-  placeholder="0x..."
-  autocomplete="off"
->
+    <input
+      id="receiver"
+      type="text"
+      placeholder="0x..."
+      autocomplete="off"
+    >
 
-<label>Expected amount</label>
+    <label for="amount">Expected amount</label>
 
-<input
-  id="amount"
-  type="number"
-  step="any"
-  min="0"
-  placeholder="Example: 100"
->
+    <input
+      id="amount"
+      type="number"
+      step="any"
+      min="0"
+      placeholder="Example: 0.05"
+    >
 
-<label>Transaction hash</label>
+    <label for="txhash">Transaction hash</label>
 
-<input
-  id="txHash"
-  placeholder="0x transaction hash"
-  autocomplete="off"
->
+    <input
+      id="txhash"
+      type="text"
+      placeholder="0x..."
+      autocomplete="off"
+    >
 
-<button onclick="verifyPayment()">
-Verify Payment
-</button>
+    <button onclick="verifyPayment()">
+      Verify Payment
+    </button>
 
-<div id="status" class="status"></div>
+    <div id="status" class="status"></div>
 
-<div class="warning">
-<strong>Security:</strong><br>
-Never enter a recovery phrase, seed phrase, private key,
-wallet password or PIN here. This page only uses public blockchain
-information.
-</div>
+    <div class="small">
+      Only enter a public wallet address and transaction hash.
+      Never enter a recovery phrase, private key, wallet password, or PIN.
+    </div>
 
-</div>
+  </div>
 
 </div>
 
 <script>
 
-const API =
-"https://eth.blockscout.com/api/v2/transactions/";
+const networks = {
 
-const EXPLORER =
-"https://eth.blockscout.com/tx/";
+  ethereum: {
+    name: "Ethereum",
+    symbol: "ETH",
+    api: "https://eth.blockscout.com",
+    explorer: "https://eth.blockscout.com/tx/"
+  },
 
-function showStatus(type,message){
+  bnb: {
+    name: "BNB Smart Chain",
+    symbol: "BNB",
+    api: "https://bsc.blockscout.com",
+    explorer: "https://bsc.blockscout.com/tx/"
+  },
 
-  const box=document.getElementById("status");
+  polygon: {
+    name: "Polygon",
+    symbol: "POL",
+    api: "https://polygon.blockscout.com",
+    explorer: "https://polygon.blockscout.com/tx/"
+  },
 
-  box.className="status "+type;
+  base: {
+    name: "Base",
+    symbol: "ETH",
+    api: "https://base.blockscout.com",
+    explorer: "https://base.blockscout.com/tx/"
+  },
 
-  box.style.display="block";
+  arbitrum: {
+    name: "Arbitrum One",
+    symbol: "ETH",
+    api: "https://arbitrum.blockscout.com",
+    explorer: "https://arbitrum.blockscout.com/tx/"
+  },
 
-  box.innerHTML=message;
+  optimism: {
+    name: "Optimism",
+    symbol: "ETH",
+    api: "https://optimism.blockscout.com",
+    explorer: "https://optimism.blockscout.com/tx/"
+  }
+
+};
+
+
+function showStatus(type, html){
+
+  const status = document.getElementById("status");
+
+  status.className = "status " + type;
+
+  status.innerHTML = html;
+
 }
 
-function normalizeAddress(address){
-
-  return address.trim().toLowerCase();
-
-}
 
 async function verifyPayment(){
 
-  const receiver=
-    normalizeAddress(
-      document.getElementById("receiver").value
-    );
+  const networkKey =
+    document.getElementById("network").value;
 
-  const expectedAmount=
-    parseFloat(
-      document.getElementById("amount").value
-    );
+  const receiver =
+    document.getElementById("receiver").value.trim();
 
-  const txHash=
-    document.getElementById("txHash").value.trim();
+  const expected =
+    parseFloat(document.getElementById("amount").value);
+
+  const txHash =
+    document.getElementById("txhash").value.trim();
+
+  const network =
+    networks[networkKey];
+
 
   if(!receiver){
 
@@ -261,171 +315,196 @@ async function verifyPayment(){
     return;
   }
 
-  if(!receiver.startsWith("0x") || receiver.length !== 42){
+
+  if(!/^0x[a-fA-F0-9]{40}$/.test(receiver)){
 
     showStatus(
       "error",
-      "Please enter a valid Ethereum receiver address."
+      "The receiver address does not look like a valid EVM wallet address."
     );
 
     return;
   }
 
-  if(!txHash){
+
+  if(!expected || expected <= 0){
 
     showStatus(
       "error",
-      "Please enter the transaction hash."
+      "Please enter the expected payment amount."
     );
 
     return;
   }
 
-  if(!txHash.startsWith("0x") || txHash.length !== 66){
+
+  if(!/^0x[a-fA-F0-9]{64}$/.test(txHash)){
 
     showStatus(
       "error",
-      "That does not look like a valid Ethereum transaction hash."
+      "Please enter a valid transaction hash."
     );
 
     return;
   }
+
 
   showStatus(
-    "waiting",
-    "⏳ Checking the blockchain...<br>Please wait."
+    "loading",
+    "Checking the blockchain transaction..."
   );
+
 
   try{
 
-    const response =
-      await fetch(
-        API + encodeURIComponent(txHash)
-      );
+    const response = await fetch(
+      network.api +
+      "/api/v2/transactions/" +
+      txHash
+    );
+
 
     if(!response.ok){
 
       throw new Error(
-        "Transaction was not found."
+        "Transaction could not be found on this network."
       );
 
     }
 
-    const tx =
-      await response.json();
 
-    const txStatus =
-      String(tx.status || "").toLowerCase();
+    const tx = await response.json();
 
-    const confirmations =
-      Number(tx.confirmations || 0);
 
-    const transactionTo =
+    if(tx.status !== "ok"){
+
+      showStatus(
+        "error",
+        "The transaction has not been successfully confirmed."
+      );
+
+      return;
+    }
+
+
+    const blockchainReceiver =
       tx.to && tx.to.hash
         ? tx.to.hash.toLowerCase()
         : "";
 
-    if(txStatus !== "ok"){
+
+    if(blockchainReceiver !== receiver.toLowerCase()){
 
       showStatus(
         "error",
-        "❌ The transaction is not confirmed successfully yet."
+        "The transaction was found, but it was not sent to the receiver wallet entered above."
       );
 
       return;
     }
 
-    if(transactionTo !== receiver){
 
-      showStatus(
-        "error",
-        "❌ This transaction was not sent to the receiver address provided."
-      );
-
-      return;
-    }
-
-    /*
-      Native ETH transaction value is returned in wei.
-      Convert it to ETH.
-    */
-
-    const rawValue =
+    const valueWei =
       BigInt(tx.value || "0");
 
-    const ethValue =
-      Number(rawValue) / 1e18;
 
-    if(
-      !Number.isNaN(expectedAmount) &&
-      expectedAmount > 0 &&
-      ethValue < expectedAmount
-    ){
+    const value =
+      Number(valueWei) / 1e18;
+
+
+    if(value < expected){
 
       showStatus(
         "error",
-        "❌ The confirmed amount is lower than the expected amount."
+        "Payment found, but the amount received is lower than the expected amount."
+        +
+        "<br><br>"
+        +
+        "Received: " +
+        value +
+        " " +
+        network.symbol
+        +
+        "<br>"
+        +
+        "Expected: " +
+        expected +
+        " " +
+        network.symbol
       );
 
       return;
     }
+
+
+    const explorer =
+      network.explorer + txHash;
+
 
     showStatus(
       "success",
-
       `
-      <strong>✓ PAYMENT RECEIVED</strong>
+      <strong style="font-size:22px;">
+      ✓ PAYMENT RECEIVED
+      </strong>
 
-      <div class="details">
+      <div class="receipt">
 
         <div>
-          <strong>Amount:</strong>
-          ${ethValue} ETH
+          <strong>Network:</strong><br>
+          ${network.name}
         </div>
 
         <div>
-          <strong>Confirmations:</strong>
-          ${confirmations}
+          <strong>Coin:</strong><br>
+          ${network.symbol}
         </div>
 
         <div>
-          <strong>Transaction:</strong>
+          <strong>Amount received:</strong><br>
+          ${value} ${network.symbol}
         </div>
 
-        <div class="hash">
+        <div>
+          <strong>Receiver:</strong><br>
+          ${receiver}
+        </div>
+
+        <div>
+          <strong>Transaction:</strong><br>
           ${txHash}
         </div>
 
-        <br>
+        <div>
+          <strong>Status:</strong><br>
+          Confirmed
+        </div>
 
-        <a
-          href="${EXPLORER}${encodeURIComponent(txHash)}"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View transaction on blockchain
-        </a>
+        <div>
+          <a
+            href="${explorer}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View transaction on blockchain explorer
+          </a>
+        </div>
 
       </div>
       `
     );
 
+
   }catch(error){
 
     showStatus(
       "error",
-
-      `
-      ❌ Payment could not be verified.
-
-      <br><br>
-
-      Make sure the transaction hash is correct and that
-      the transaction exists on Ethereum.
-      `
+      "Unable to verify this transaction right now."
+      +
+      "<br><br>"
+      +
+      error.message
     );
-
-    console.error(error);
 
   }
 
